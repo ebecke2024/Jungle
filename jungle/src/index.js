@@ -1,13 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import App from './App';
+import NotFound from './components/NotFound';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const router = createBrowserRouter([
+  {
+      path: "/",
+      element: <App />,
+      errorElement: <NotFound />
+  },
+]);
+
 root.render(
   <React.StrictMode>
     {/* looking to use ThemeProvider from MUI here */}
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
