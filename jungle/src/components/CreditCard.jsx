@@ -17,7 +17,12 @@ function CreditCard({ cardNumber, nameOnCard, expDate, isSelected, onSelect }) {
       </td>
       <td>{nameOnCard}</td> {/* Cell holding the name on the card */}
       <td>{`${cardNumber.slice(-4)}`}</td> {/* Cell with the last four numbers of the card */}
-      <td>{`${new Date(expDate).getMonth() + 1}/${new Date(expDate).getFullYear()}`}</td> {/* Cell for card expiration date in MM/YYYY format */}
+      <td>
+      {isExpired && (
+          <div style={{ color: 'red' }}>Expired</div> // Show "Expired" in red
+        )}
+        {`${new Date(expDate).getMonth() + 1}/${new Date(expDate).getFullYear()}`}
+        </td> {/* Cell for card expiration date in MM/YYYY format */}
     </tr>
   );
 }
