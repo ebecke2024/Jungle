@@ -2,10 +2,9 @@ import { useState } from "react";
 import { Navbar, NavDropdown, Form, Button, Container, Row, Col } from "react-bootstrap";
 
 export default function NavigationBar() {
+    // NOTICE: THIS WILL ALL BE REMOVED WHEN WE ACTUALLY IMPLEMENT LOGGING IN    
     var accountName = "Placeholder Username";
-
     var [isLoggedIn, setIsLoggedIn] = useState(false);
-
     function testLogin() {
         setIsLoggedIn(!isLoggedIn);
     }
@@ -42,7 +41,8 @@ export default function NavigationBar() {
                         </div>
                     ) : (
                         <div>
-                            <NavDropdown.Item onClick={testLogin}> {/* NOTICE: SWITCH TO ROUTE TO LOGIN PAGE LATER*/}
+                            {/* NOTICE: SWITCH TO ROUTE TO LOGIN PAGE LATER*/}
+                            <NavDropdown.Item onClick={testLogin}> 
                                 Login
                             </NavDropdown.Item>
                             <NavDropdown.Item href="/register">

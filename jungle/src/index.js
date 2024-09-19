@@ -4,22 +4,44 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+import NavigationBar from './components/Navbar/NavigationBar';
+
 import App from './App';
+import Cart from './components/Cart';
+import Account from './components/Account';
+import Login from './components/Login';
+import Register from './components/Register';
 import NotFound from './components/NotFound';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const router = createBrowserRouter([
   {
-      path: "/",
-      element: <App />,
-      errorElement: <NotFound />
+    path: "/",
+    element: <App />,
+    errorElement: <NotFound />
+  },
+  {
+    path: "/cart",
+    element: <Cart />
+  },
+  {
+    path: "/account",
+    element: <Account />
+  },
+  {
+    path: "/login",
+    element: <Login />
+  },
+  {
+    path: "/register",
+    element: <Register />
   },
 ]);
 
 root.render(
   <React.StrictMode>
-    {/* looking to use ThemeProvider from MUI here */}
+    <NavigationBar />
     <RouterProvider router={router} />
   </React.StrictMode>
 );
