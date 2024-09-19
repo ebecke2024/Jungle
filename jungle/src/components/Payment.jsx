@@ -1,28 +1,29 @@
-import React, { useState } from 'react';
-import CreditCard from './CreditCard'; // Adjust the import path as needed
+import Button from "react-bootstrap/Button";
+import React, { useState } from "react";
+import CreditCard from "./CreditCard"; // Adjust the import path as needed
 
 function Payment({ customerId }) {
   // Hard-coded payment methods for testing layout
-  // TODO: NEED to remove hard coded methods and consume API to populate paymentMethods 
-  // TODO: GET payment methods for customer; POST new payment method 
+  // TODO: NEED to remove hard coded methods and consume API to populate paymentMethods
+  // TODO: GET payment methods for customer; POST new payment method
   const paymentMethods = [
     {
       pmID: 1,
-      pmCardNumber: '4111111111111111',
-      pmName: 'Johnny Silverhand',
-      pmExpDate: '12-01-2023',
+      pmCardNumber: "4111111111111111",
+      pmName: "Johnny Silverhand",
+      pmExpDate: "12-01-2023",
     },
     {
       pmID: 2,
-      pmCardNumber: '5500000000000004',
-      pmName: 'V',
-      pmExpDate: '01-01-2077',
+      pmCardNumber: "5500000000000004",
+      pmName: "V",
+      pmExpDate: "01-01-2077",
     },
     {
       pmID: 3,
-      pmCardNumber: '340000000000009',
-      pmName: 'Judy Alvarez',
-      pmExpDate: '05-01-2079',
+      pmCardNumber: "340000000000009",
+      pmName: "Judy Alvarez",
+      pmExpDate: "05-01-2079",
     },
   ];
 
@@ -34,13 +35,20 @@ function Payment({ customerId }) {
   };
 
   return (
-    <div style={{ border: '1px solid #ccc', borderRadius: '5px', padding: '20px', margin: '10px 0' }}>
-      <h2>Saved Payment Methods</h2>
+    <div
+      style={{
+        border: "1px solid #ccc",
+        borderRadius: "5px",
+        padding: "20px",
+        margin: "10px 0",
+      }}
+    >
+      <h2>Your credit and debit cards</h2>
       {error && <p>Error: {error}</p>} {/* Display error message if exists */}
       {paymentMethods.length === 0 ? (
         <p>No payment methods found.</p> // Message if no payment methods are available
       ) : (
-        <table>
+        <table className="table table-striped">
           <thead>
             <tr>
               <th></th>
@@ -63,12 +71,34 @@ function Payment({ customerId }) {
           </tbody>
         </table>
       )}
-      <button
-        type="button"
-        onClick={() => console.log('Proceeding with payment...')}
+      <Button
+        variant="secondary"
+        onClick={() => {
+          if (!selectedMethod) {
+            alert("Please select a payment method before proceeding.");
+          } else {
+            // Validate whether the card is expired or not
+            const selectedPaymentMethod = paymentMethods.find(
+              (method) => method.pmID === selectedMethod
+            );
+            // Get the current Date by creating a new date object
+            const currentDate = new Date();
+            // Get the expiration date from the selectedPaymentMethod 
+            const expDate = new Date(selectedPaymentMethod.pmExpDate);
+            // Logic to check if the card is expired or not
+            if (expDate < currentDate) {
+              alert(
+                "The selected card is expired. Please choose a valid payment method."
+              );
+            } else {
+              alert("Proceeding with payment...");
+              // TODO: Process payment
+            }
+          }
+        }}
       >
         Proceed to Payment
-      </button>
+      </Button>
     </div>
   );
 }
