@@ -11,7 +11,7 @@ function Payment({ customerId }) {
       pmID: 1,
       pmCardNumber: "4111111111111111",
       pmName: "Johnny Silverhand",
-      pmExpDate: "12-01-2023",
+      pmExpDate: "12-01-2023", // Expired card created for testing
     },
     {
       pmID: 2,
@@ -28,27 +28,21 @@ function Payment({ customerId }) {
   ];
 
   const [error, setError] = useState(null); // Error handling state
-  const [selectedMethod, setSelectedMethod] = useState(null); // Selected payment method state
+  const [selectedMethod, setSelectedMethod] = useState(null); // This state will track the selected payment method
 
+  // This function will handle the selected method 
   const handleSelectMethod = (id) => {
     setSelectedMethod(id); // Update the selected method
   };
 
   return (
-    <div
-      style={{
-        border: "1px solid #ccc",
-        borderRadius: "5px",
-        padding: "20px",
-        margin: "10px 0",
-      }}
-    >
+    <div class="container">
       <h2>Your credit and debit cards</h2>
       {error && <p>Error: {error}</p>} {/* Display error message if exists */}
       {paymentMethods.length === 0 ? (
         <p>No payment methods found.</p> // Message if no payment methods are available
       ) : (
-        <table className="table table-striped">
+        <table className="table table-hover">
           <thead>
             <tr>
               <th></th>
