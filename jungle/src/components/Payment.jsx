@@ -97,7 +97,7 @@ function Payment({ customerId }) {
           }
         }}
       >
-        Proceed to Payment
+        Use this payment method
       </Button>
     </div>
   );
