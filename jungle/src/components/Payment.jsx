@@ -1,12 +1,14 @@
 import Button from "react-bootstrap/Button";
 import React, { useState } from "react";
 import CreditCard from "./CreditCard"; // Adjust the import path as needed
+import AddPaymentMethod from "./AddPaymentMethod";
 
 function Payment({ customerId }) {
   // Hard-coded payment methods for testing layout
   // TODO: NEED to remove hard coded methods and consume API to populate paymentMethods
   // TODO: GET payment methods for customer; POST new payment method
-  const paymentMethods = [
+  const [showModal, setShowModal] = useState(false);
+  const [paymentMethods, setPaymentMethods] = useState([
     {
       pmID: 1,
       pmCardNumber: "4111111111111111",
@@ -25,10 +27,21 @@ function Payment({ customerId }) {
       pmName: "Judy Alvarez",
       pmExpDate: "05-01-2079",
     },
-  ];
+  ]);
 
   const [error, setError] = useState(null); // Error handling state
   const [selectedMethod, setSelectedMethod] = useState(null); // This state will track the selected payment method
+
+  const handleAddPaymentMethod = (newCard) => {
+    const newMethod = {
+      pmID: paymentMethods.length + 1, // Update ID logic as needed
+      pmCardNumber: newCard.cardNumber,
+      pmName: newCard.nameOnCard,
+      pmExpDate: newCard.expDate,
+    };
+    setPaymentMethods([...paymentMethods, newMethod]); // Add the new payment method
+  };
+
 
   // This function will handle the selected method 
   const handleSelectMethod = (id) => {
@@ -64,7 +77,12 @@ function Payment({ customerId }) {
             ))}
           </tbody>
         </table>
+        
       )}
+      <Button variant="primary" onClick={() => setShowModal(true)}>
+        Add New Payment Method
+      </Button>
+      <br />
       <Button
         variant="secondary"
         onClick={() => {
@@ -93,6 +111,12 @@ function Payment({ customerId }) {
       >
         Use this payment method
       </Button>
+      {/* Use the AddPayment component */}
+      <AddPaymentMethod
+        show={showModal}
+        handleClose={() => setShowModal(false)}
+        onAdd={handleAddPaymentMethod}
+      />
     </div>
   );
 }
