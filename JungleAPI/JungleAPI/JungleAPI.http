@@ -1,0 +1,6 @@
+@JungleAPI_HostAddress = http://localhost:5137
+
+GET {{JungleAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
