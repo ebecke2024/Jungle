@@ -8136,23 +8136,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\js_ba\\.nuget\\packages\\": {},
+    "C:\\Users\\brend\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\js_ba\\OneDrive\\Ebay Template Files\\JSB\\aJobs\\Revature\\Cohort - 08052024\\Projects\\P2\\JungleAPI\\JungleAPI\\JungleAPI.csproj",
+      "projectUniqueName": "C:\\Users\\brend\\revature\\Jungle\\JungleAPI\\JungleAPI\\JungleAPI.csproj",
       "projectName": "JungleAPI",
-      "projectPath": "C:\\Users\\js_ba\\OneDrive\\Ebay Template Files\\JSB\\aJobs\\Revature\\Cohort - 08052024\\Projects\\P2\\JungleAPI\\JungleAPI\\JungleAPI.csproj",
-      "packagesPath": "C:\\Users\\js_ba\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\js_ba\\OneDrive\\Ebay Template Files\\JSB\\aJobs\\Revature\\Cohort - 08052024\\Projects\\P2\\JungleAPI\\JungleAPI\\obj\\",
+      "projectPath": "C:\\Users\\brend\\revature\\Jungle\\JungleAPI\\JungleAPI\\JungleAPI.csproj",
+      "packagesPath": "C:\\Users\\brend\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\brend\\revature\\Jungle\\JungleAPI\\JungleAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\js_ba\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\brend\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -8233,7 +8233,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.304/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
