@@ -41,6 +41,57 @@ namespace JungleAPI.Controllers
             return product;
         }
 
+        // GET: api/Products/filter/iPhone
+        [HttpGet("/category/{name}")]
+        public async Task<ActionResult> GetCategoryProduct(string name)
+        {
+            // Create a query to filter products
+            var query = _context.Products.AsQueryable();
+
+            // Filter by name if provided
+            if (!string.IsNullOrEmpty(name))
+            {
+                query = query.Where(p => p.ProductCategory.Contains(name));
+            }
+
+            // Execute the query and return the filtered list of products
+            var products = await query.ToListAsync();
+
+            if (products.Count == 0)
+            {
+                return NotFound("No products found with the selected Category.");
+            }
+
+            return Ok(products);
+
+        }
+
+
+        // GET: api/Products/filter/iPhone
+        [HttpGet("/filter/{name}")]
+        public async Task<ActionResult> GetFilterProduct(string name)
+        {
+            // Create a query to filter products
+            var query = _context.Products.AsQueryable();
+
+            // Filter by name if provided
+            if (!string.IsNullOrEmpty(name))
+            {
+                query = query.Where(p => p.ProductName.Contains(name));
+            }
+
+            // Execute the query and return the filtered list of products
+            var products = await query.ToListAsync();
+
+            if (products.Count == 0)
+            {
+                return NotFound("No products found with the specified criteria.");
+            }
+
+            return Ok(products);
+
+        }
+
         // PUT: api/Products/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
