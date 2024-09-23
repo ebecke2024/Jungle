@@ -21,7 +21,7 @@ export default function NavigationBar() {
     <Navbar className="bg-body-tertiary justify-content-between">
       <Container>
         <Navbar.Brand href="/">Jungle Store</Navbar.Brand>
-        <Form inline>
+        <Form className="d-inline">
           <Row xs={"auto"}>
             <Col>
               <Form.Control type="text" placeholder="Search Jungle" />
@@ -43,7 +43,7 @@ export default function NavigationBar() {
           ) : (
             <div>
               {/* NOTICE: SWITCH TO ROUTE TO LOGIN PAGE LATER*/}
-              <NavDropdown.Item href="/login">Login</NavDropdown.Item>
+              <NavDropdown.Item href={"/login"}>Login</NavDropdown.Item>
               <NavDropdown.Item href="/register">Register</NavDropdown.Item>
             </div>
           )}
