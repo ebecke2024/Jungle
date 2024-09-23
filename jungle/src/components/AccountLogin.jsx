@@ -1,3 +1,4 @@
+// Useless file, all functionality is in Login.jsx
 import React, { useState } from "react";
 
 export default function AccountLogin() {
