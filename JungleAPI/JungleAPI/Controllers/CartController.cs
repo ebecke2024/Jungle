@@ -41,6 +41,25 @@ namespace JungleAPI.Controllers
             return cartTb;
         }
 
+
+        // GET: api/customer/5
+        [HttpGet("/customer/{id}")]
+        public async Task<ActionResult<IEnumerable<CartTb>>> GetCartByCustomerId(int id)
+        {
+            // Query the database to find cart items for a specific customer
+            var cartItems = await _context.CartTbs
+                                          .Where(c => c.CartCustomerId == id) // Filtering by CustomerID
+                                          .ToListAsync();
+
+            if (cartItems == null || !cartItems.Any())
+            {
+                return NotFound($"No cart items found for CustomerID: {id}");
+            }
+
+            return Ok(cartItems); // Return the list of cart items
+        }
+
+
         // PUT: api/Cart/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
