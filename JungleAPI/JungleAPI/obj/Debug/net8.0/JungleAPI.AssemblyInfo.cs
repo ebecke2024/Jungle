@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("JungleAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e20715605655ec51dfacf678bce3b649dd5e2eaa")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7dda98b4519c26021be72d1620d6a5e72eb44e06")]
 [assembly: System.Reflection.AssemblyProductAttribute("JungleAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("JungleAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

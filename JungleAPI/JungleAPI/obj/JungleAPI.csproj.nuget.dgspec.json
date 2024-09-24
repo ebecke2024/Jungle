@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Desktop\\Jungle\\JungleAPI\\JungleAPI\\JungleAPI.csproj": {}
+    "C:\\Users\\jason\\OneDrive\\Desktop\\Cohort - 05082024\\Project_2\\Jungle\\JungleAPI\\JungleAPI\\JungleAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Desktop\\Jungle\\JungleAPI\\JungleAPI\\JungleAPI.csproj": {
+    "C:\\Users\\jason\\OneDrive\\Desktop\\Cohort - 05082024\\Project_2\\Jungle\\JungleAPI\\JungleAPI\\JungleAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Desktop\\Jungle\\JungleAPI\\JungleAPI\\JungleAPI.csproj",
+        "projectUniqueName": "C:\\Users\\jason\\OneDrive\\Desktop\\Cohort - 05082024\\Project_2\\Jungle\\JungleAPI\\JungleAPI\\JungleAPI.csproj",
         "projectName": "JungleAPI",
-        "projectPath": "C:\\Users\\User\\Desktop\\Jungle\\JungleAPI\\JungleAPI\\JungleAPI.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Desktop\\Jungle\\JungleAPI\\JungleAPI\\obj\\",
+        "projectPath": "C:\\Users\\jason\\OneDrive\\Desktop\\Cohort - 05082024\\Project_2\\Jungle\\JungleAPI\\JungleAPI\\JungleAPI.csproj",
+        "packagesPath": "C:\\Users\\jason\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jason\\OneDrive\\Desktop\\Cohort - 05082024\\Project_2\\Jungle\\JungleAPI\\JungleAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jason\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
