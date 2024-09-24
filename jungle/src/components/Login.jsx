@@ -8,7 +8,7 @@ import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 
 export default function AccountLogin() {
-  const [username, setUsername] = useState("");
+  const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -31,13 +31,13 @@ export default function AccountLogin() {
       // Find the customer where the username or email and password match
       const foundCustomer = customers.find(
         (customer) =>
-          (customer.custEmail === username || customer.userName === username) &&
+          (customer.custEmail === login || customer.userName === login) &&
           customer.custPassWord === password
       );
 
       if (foundCustomer) {
         alert(`Login successful! Welcome, ${foundCustomer.custName}`);
-        // Handle successful login (e.g., redirect, save session data, etc.)
+        // Handle successful login 
       } else {
         setError("Invalid username/email or password.");
       }
@@ -63,9 +63,9 @@ export default function AccountLogin() {
         <Form.Label>Email or Username</Form.Label>
         <Form.Control
           type="text"
-          id="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          id="login"
+          value={login}
+          onChange={(e) => setLogin(e.target.value)}
         />
         <Form.Label>Password</Form.Label>
         <Form.Control
