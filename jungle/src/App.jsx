@@ -7,7 +7,6 @@ export default function App() {
   return (
     <UserProvider>
       <Home />
-      <AccountLogin /> {/* Include the login component as needed */}
     </UserProvider>
   );
 }

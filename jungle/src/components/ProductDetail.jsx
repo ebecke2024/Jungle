@@ -26,6 +26,7 @@ const ProductDetail = () => {
           placeholder="Enter Product Name"
           value={prod1}
           id="searchName"
+          // 
           onChange={(e) => setProd1(e.target.value)}
         />
         <Button variant="primary" onClick={handleSearch} disabled={loading}>
