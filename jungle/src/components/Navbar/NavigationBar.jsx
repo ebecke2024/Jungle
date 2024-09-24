@@ -13,6 +13,8 @@ export default function NavigationBar() {
   // NOTICE: THIS WILL ALL BE REMOVED WHEN WE ACTUALLY IMPLEMENT LOGGING IN
   var accountName = "Placeholder Username";
   var [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const LogoUrl = 'https://i.postimg.cc/pdhx5bzJ/865aa6c1-3d95-4e76-a5a8-d3eb25d3d95e.jpg'
   function testLogin() {
     setIsLoggedIn(!isLoggedIn);
   }
@@ -20,7 +22,16 @@ export default function NavigationBar() {
   return (
     <Navbar className="bg-body-tertiary justify-content-between">
       <Container>
-        <Navbar.Brand href="/">Jungle Store</Navbar.Brand>
+        <Navbar.Brand href="/">
+        <img
+              src={LogoUrl}
+              width="50"
+              height="50"
+              alt="Logo" />
+        <span className="brand-text">
+            Jungle
+        </span>
+        </Navbar.Brand>
         <Form className="d-inline">
           <Row xs={"auto"}>
             <Col>
