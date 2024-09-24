@@ -41,6 +41,18 @@ namespace JungleAPI.Controllers
             return product;
         }
 
+        // GET: api/products/categories
+        [HttpGet("categories")]
+        public async Task<ActionResult<IEnumerable<string>>> GetCategories()
+        {
+            var categories = await _context.Products
+                                           .Select(p => p.ProductCategory)
+                                           .Distinct()
+                                           .ToListAsync();
+
+            return Ok(categories);
+        }
+
         // GET: api/Products/filter/iPhone
         [HttpGet("/category/{name}")]
         public async Task<ActionResult> GetCategoryProduct(string name)
