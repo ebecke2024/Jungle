@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using JungleAPI.Models;
+using Microsoft.AspNetCore.Identity.Data;
 
 namespace JungleAPI.Controllers
 {
@@ -40,6 +41,25 @@ namespace JungleAPI.Controllers
 
             return customer;
         }
+
+        // POST: api/customer/login
+        [HttpPost("login")]
+        public IActionResult Login([FromBody] LoginRequest loginRequest)
+        {
+            // Verify user credentials
+            var customer = _context.Customers
+                .FirstOrDefault(c => c.UserName == loginRequest.Email && c.CustPassWord == loginRequest.Password);
+
+            if (customer != null)
+            {
+                // Authentication successful, return a session token or just a success message
+                return Ok(new { message = "Login successful", customerId = customer.CustomerId });
+            }
+
+            // Authentication failed
+            return Unauthorized(new { message = "Invalid username or password" });
+        }
+
 
         // PUT: api/Customers/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
