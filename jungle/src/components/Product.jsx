@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Card, Button, Container, Row, Col, Form } from "react-bootstrap";
 import { SearchContext } from "../App";
+import { Link } from "react-router-dom";
 
 // URL Endpoints from API
 const PRODUCTS_API_URL = "https://localhost:7080/api/Products"; // Endpoint to fetch products
@@ -134,7 +135,7 @@ const ProductList = () => {
                 alt={product.productName}
               />
               <Card.Body>
-                <Card.Title>{product.productName}</Card.Title>
+                <Card.Title><Link to="productdetail">{product.productName}</Link></Card.Title>
                 <Card.Text>
                   {product.productCategory}
                   <br />

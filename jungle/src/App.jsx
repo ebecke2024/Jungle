@@ -11,6 +11,7 @@ import Payment from "./components/Payment";
 import Cart from "./components/Cart";
 import Login from "./components/AccountLogin";
 import NotFound from "./components/NotFound";
+import ProductDetail from "./components/ProductDetail";
 
 export const SearchContext = createContext();
 
@@ -45,6 +46,10 @@ export default function App() {
       element: <Payment />,
       errorElement: <NotFound />,
     },
+    {
+      path: "/productdetail",
+      element: <ProductDetail />
+    }
   ]);
 
   return (
