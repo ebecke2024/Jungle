@@ -9,7 +9,7 @@ import Account from "./components/Account";
 import Register from "./components/Register";
 import Payment from "./components/Payment";
 import Cart from "./components/Cart";
-import Login from "./components/AccountLogin";
+import Login from "./components/Login";
 import NotFound from "./components/NotFound";
 import ProductDetail from "./components/ProductDetail";
 
@@ -48,8 +48,8 @@ export default function App() {
     },
     {
       path: "/productdetail",
-      element: <ProductDetail />
-    }
+      element: <ProductDetail />,
+    },
   ]);
 
   return (
