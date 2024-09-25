@@ -1,6 +1,6 @@
 import { useState } from "react";
 import useFetch from "./CustomHook/useFetch";
-import { Badge, Button, Container, ListGroup } from "react-bootstrap";
+import { Badge, Button, Card, Col, Container, ListGroup, Row } from "react-bootstrap";
 
 export default function Cart() {
     const [prod1, setProd1] = useState("");
@@ -14,6 +14,8 @@ export default function Cart() {
 
     return (
         <div>
+            <Container>
+            <br/>
             <input
                 type="text"
                 placeholder="Enter Product Name"
@@ -25,61 +27,33 @@ export default function Cart() {
             <Button variant="primary" onClick={handleSearch} disabled={loading}>
             {loading ? "Searching..." : "Search"}
             </Button>
-        
-            <ListGroup as="ul">
-                {data &&
-                    data.map((val, key) => {
-                        return (
-                                <ListGroup.Item
-                                as="li"
-                                className="d-flex justify-content-between align-items-start"
-                            >
-                                <div className="ms-2 me-auto">
-                                <div className="fw-bold">Cart #</div>
-                                Number of Cart
-                                </div>
-                                <Badge bg="primary" pill>
-                                {val.cartId}
-                                </Badge>
-                                <div className="ms-2 me-auto">
-                                <div className="fw-bold">Product #</div>
-                                Number of Product
-                                </div>
-                                <Badge bg="primary" pill>
-                                {val.cartProductId}
-                                </Badge>
-                                <div className="ms-2 me-auto">
-                                <div className="fw-bold">Customer #</div>
-                                Number of Customer
-                                </div>
-                                <Badge bg="primary" pill>
-                                {val.cartCustomerId}
-                                </Badge>
-                                <div className="ms-2 me-auto">
-                                <div className="fw-bold">Payment #</div>
-                                Number of Payment
-                                </div>
-                                <Badge bg="primary" pill>
-                                {val.cartPaymentId}
-                                </Badge>
-                                <div className="ms-2 me-auto">
-                                <div className="fw-bold">Quantity of Product</div>
-                                Number of Products in Cart
-                                </div>
-                                <Badge bg="primary" pill>
-                                {val.qty}
-                                </Badge>
-                                <div className="ms-2 me-auto">
-                                <div className="fw-bold">Total Cost</div>
-                                Cost of Total Products in your Cart
-                                </div>
-                                <Badge bg="primary" pill>
-                                {val.productTotal}
-                                </Badge>
-                            </ListGroup.Item>
-                        )
-                })}
-            </ListGroup>
+            {data &&
+                data.map((val, key) => {
+                    return (
+                        <Card style={{ width: '18rem' }}>
+                            <Card.Body>
+                                <Card.Title>Cart #{val.cartId}</Card.Title>
+                                <Card.Text>
+                                <p>Ordered By Customer #: {val.cartCustomerId}</p>
+                                <p>Product #: {val.cartProductId}</p>
+                                <p>Payment #: {val.cartPaymentId}</p>
+                                <p>Quantity of Product: {val.qty}</p>
+                                <p>Total Cost: {val.productTotal}</p>
+                                </Card.Text>
+                                <Row>
+                                    <Col>
+                                        <Button variant="primary" id="addedToCart">Add To Cart</Button>
+                                    </Col>
+                                    <Col>
+                                        <Button variant="primary" id="removedFromCart">Remove From Cart</Button>
+                                    </Col>
+                                </Row>
+                            </Card.Body>
+                        </Card>
+                    )
+            })}
+        </Container>
+
         </div>
     );
 }
