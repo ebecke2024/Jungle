@@ -13,7 +13,7 @@ import {
 export default function NavigationBar() {
   const { searchQuery, setSearchQuery, triggerSearch, setTriggerSearch } = useContext(SearchContext);
   // NOTICE: THIS WILL ALL BE REMOVED WHEN WE ACTUALLY IMPLEMENT LOGGING IN
-  var accountName = "Placeholder Username";
+ 
   var [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const LogoUrl = "https://i.postimg.cc/pdhx5bzJ/865aa6c1-3d95-4e76-a5a8-d3eb25d3d95e.jpg";
