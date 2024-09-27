@@ -168,7 +168,7 @@ const ProductList = (navigation) => {
               />
               <Card.Body>
                 <Card.Title>
-                  <Link to="/productdetail">{product.productName}</Link>
+                  <Link to={`productdetail/${product.productId}`}>{product.productName}</Link>
                 </Card.Title>
                 <Card.Text>
                   {product.productCategory}

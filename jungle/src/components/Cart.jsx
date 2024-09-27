@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useFetch from "./CustomHook/useFetch";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 
-export default function Cart(image) {
+export default function Cart() {
     const [prod1, setProd1] = useState("");
     const [url, setUrl] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -11,6 +11,11 @@ export default function Cart(image) {
     const handleSearch = () => {
         setUrl(`https://localhost:7080/customer/${prod1}`);
     };
+
+    async function deleteCart(value) {
+        // Simple DELETE request with fetch
+        await fetch(`https://localhost:7080/api/Cart/${value}`, { method: 'DELETE' });
+    }
 
     return (
         <div>
@@ -44,7 +49,7 @@ export default function Cart(image) {
                                 </Card.Text>
                                 <Row>
                                     <Col>
-                                        <Button variant="primary" id="removedFromCart" onClick="()">Remove From Cart</Button>
+                                        <Button variant="primary" id="removedFromCart" onClick={()=>deleteCart(val.cartId)}>Remove Cart #{val.cartId}</Button>
                                     </Col>
                                 </Row>
                             </Card.Body>

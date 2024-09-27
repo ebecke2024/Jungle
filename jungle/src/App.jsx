@@ -47,8 +47,8 @@ export default function App() {
       errorElement: <NotFound />,
     },
     {
-      path: "/productdetail",
-      element: <ProductDetail productID=""/>,
+      path: "productdetail/:id",
+      element: <ProductDetail />,
     },
   ]);
 
