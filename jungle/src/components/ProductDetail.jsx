@@ -3,7 +3,7 @@ import useFetch from "./CustomHook/useFetch";
 import { Card, Col, Container, Figure, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 
-const ProductDetail = () => {
+const ProductDetail = (productID) => {
   //var prod1 = document.getElementById('searchName').value;
   // var prod1 = "jeans";
   //var url = "https://localhost:7080/filter/" + prod1;
@@ -14,24 +14,26 @@ const ProductDetail = () => {
 
   const [data] = useFetch(url); //Returns an array of JSON
 
+  prod1 = productID;
   const handleSearch = () => {
-    setUrl(`https://localhost:7080/filter/${prod1}`);
+    setUrl(`https://localhost:7080/api/Products/${prod1}`);
   };
 
   return (
     <div>
       <Container>
-        <input
+        {/* <input
           type="text"
           placeholder="Enter Product Name"
           value={prod1}
           id="searchName"
-          // 
           onChange={(e) => setProd1(e.target.value)}
         />
         <Button variant="primary" onClick={handleSearch} disabled={loading}>
           {loading ? "Searching..." : "Search"}
         </Button>
+        <hr/> */}
+        <p>{data.productId}</p>
         {data &&
           data.map((val, key) => {
             return (

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import useFetch from "./CustomHook/useFetch";
-import { Badge, Button, Card, Col, Container, ListGroup, Row } from "react-bootstrap";
+import { Button, Card, Col, Container, Row } from "react-bootstrap";
 
-export default function Cart() {
+export default function Cart(image) {
     const [prod1, setProd1] = useState("");
     const [url, setUrl] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -17,8 +17,8 @@ export default function Cart() {
             <Container>
             <br/>
             <input
-                type="text"
-                placeholder="Enter Product Name"
+                type="number"
+                placeholder="Enter Customer #"
                 value={prod1}
                 id="searchName"
                 // 
@@ -27,6 +27,8 @@ export default function Cart() {
             <Button variant="primary" onClick={handleSearch} disabled={loading}>
             {loading ? "Searching..." : "Search"}
             </Button>
+            <hr/>
+            <Row className="justify-content-md-center" md={2}>
             {data &&
                 data.map((val, key) => {
                     return (
@@ -42,16 +44,14 @@ export default function Cart() {
                                 </Card.Text>
                                 <Row>
                                     <Col>
-                                        <Button variant="primary" id="addedToCart">Add To Cart</Button>
-                                    </Col>
-                                    <Col>
-                                        <Button variant="primary" id="removedFromCart">Remove From Cart</Button>
+                                        <Button variant="primary" id="removedFromCart" onClick="()">Remove From Cart</Button>
                                     </Col>
                                 </Row>
                             </Card.Body>
                         </Card>
                     )
             })}
+            </Row>
         </Container>
 
         </div>

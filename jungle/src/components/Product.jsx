@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Button, Container, Row, Col, Form } from 'react-bootstrap';
+import ProductDetail from './ProductDetail';
+import { Link } from 'react-router-dom';
 
 // URL Endpoints from API
 const PRODUCTS_API_URL = "https://localhost:7080/api/Products"; // Endpoint to fetch products
 const ADD_TO_CART_API_URL = "https://localhost:7080/api/Cart"; // Endpoint to add products to cart
 const CATEGORIES_API_URL = "https://localhost:7080/api/Products/categories" // Endpoint to fetch categories from products
 
-const ProductList = () => {
+const ProductList = (navigation) => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -140,7 +142,7 @@ const filteredProducts = products.filter(product =>
             <Card>
               <Card.Img variant="top" src={product.images} alt={product.productName} />
               <Card.Body>
-                <Card.Title>{product.productName}</Card.Title>
+                <Card.Title><Link to="/productdetail">{product.productName}</Link></Card.Title>
                 <Card.Text>
                   {product.productCategory}
                   <br />

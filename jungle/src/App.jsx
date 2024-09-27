@@ -48,7 +48,7 @@ export default function App() {
     },
     {
       path: "/productdetail",
-      element: <ProductDetail />,
+      element: <ProductDetail productID=""/>,
     },
   ]);
 
