@@ -26,9 +26,14 @@ const LoginPage = () => {
 
       if (response.ok) {
         const data = await response.json();
-        sessionStorage.setItem('customerId', data.customerId); // Store CustomerID
+        console.log(data);
+        sessionStorage.setItem('customerId', data.customerId);    // Store CustomerID
+        sessionStorage.setItem('customerName', data.custName);   // Store Customer Name
+        console.log(data.customerId)
+        console.log(data.custName)
         setLoggedIn(true);
         navigate('/');
+        window.location.reload();
       } else {
         setError('Invalid username or password');
       }

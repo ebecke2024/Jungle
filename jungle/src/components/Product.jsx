@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from "react";
 import { Card, Button, Container, Row, Col, Form } from 'react-bootstrap';
-import ProductDetail from './ProductDetail';
-import { Link } from 'react-router-dom';
+import { SearchContext } from "../App";
+import ProductDetail from "./ProductDetail";
+import { Link } from "react-router-dom";
 
 // URL Endpoints from API
 const PRODUCTS_API_URL = "https://localhost:7080/api/Products"; // Endpoint to fetch products
@@ -11,7 +12,9 @@ const CATEGORIES_API_URL = "https://localhost:7080/api/Products/categories" // E
 const ProductList = (navigation) => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const { searchQuery, triggerSearch } = useContext(SearchContext);
+  const [searchedProducts, setSearchedProducts] = useState([]);
   const [cart, setCart] = useState([]);
   const [quantity, setQuantity] = useState({});
   const [customerId, setCustomerId] = useState(null);
@@ -20,6 +23,7 @@ const ProductList = (navigation) => {
   useEffect(() => {
     fetchProducts();
     fetchCategories();
+    filterBySearch();
 
     const storedCustomerId = sessionStorage.getItem('customerId');
     if (storedCustomerId) {
@@ -36,6 +40,14 @@ const ProductList = (navigation) => {
       console.error('Error fetching products:', error);
     }
   };
+
+  function filterBySearch() {
+    setSearchedProducts(
+      products.filter(
+        (p) => p.productName.toLowerCase().includes(searchQuery.toLowerCase()), // Both are converted to lowercase
+      ),
+    );
+  }
 
   const fetchCategories = async () => {
     try {
@@ -74,7 +86,7 @@ const ProductList = (navigation) => {
             body: JSON.stringify(cartItem),  // Send details to the cart API
         });
 
-        const data = await response.json();
+    const data = await response.json();
         setCart([...cart, data]); //updates the cart state
 
         if (response.ok) {
@@ -92,10 +104,16 @@ const ProductList = (navigation) => {
     setSelectedCategory(e.target.value);
   };
 
-// Filter products based on the selected category
-const filteredProducts = products.filter(product => 
-    selectedCategory === 'All' || product.productCategory === selectedCategory
-);
+  // Filter products based on the selected category
+  const filteredProducts = products
+  .filter(
+    (product) =>
+      selectedCategory === "All" ||
+      product.productCategory === selectedCategory,
+  )
+  .filter((product) =>
+    product.productName.toLowerCase().includes(searchQuery.toLowerCase()),
+  );
 
 
   if (!customerId) {
@@ -119,20 +137,25 @@ const filteredProducts = products.filter(product =>
   return (
     <Container style={{backgroundColor: 'white', padding: '20px' }}>
       <Row className="my-4">
-        <Col><h2>Our Products - {customerId}</h2></Col>
         <Col>
-            {/* Category Dropdown Filter */}
-            <Row className="mb-4">
-                <Col>
-                <Form.Select value={selectedCategory} onChange={handleCategoryChange}>
-                    {categories.map((category, index) => (
-                    <option key={index} value={category}>
-                        {category}
-                    </option>
-                    ))}
-                </Form.Select>
-                </Col>
-            </Row>
+          <h2>Our Products</h2>
+        </Col>
+        <Col>
+          {/* Category Dropdown Filter */}
+          <Row className="mb-4">
+            <Col>
+              <Form.Select
+                value={selectedCategory}
+                onChange={handleCategoryChange}
+              >
+                {categories.map((category, index) => (
+                  <option key={index} value={category}>
+                    {category}
+                  </option>
+                ))}
+              </Form.Select>
+            </Col>
+          </Row>
         </Col>
       </Row>
 
@@ -140,9 +163,15 @@ const filteredProducts = products.filter(product =>
         {filteredProducts.map((product) => (
           <Col key={product.productId} sm={6} md={4} lg={2} className="mb-4">
             <Card>
-              <Card.Img variant="top" src={product.images} alt={product.productName} />
+              <Card.Img
+                variant="top"
+                src={product.images}
+                alt={product.productName}
+              />
               <Card.Body>
-                <Card.Title><Link to="/productdetail">{product.productName}</Link></Card.Title>
+                <Card.Title>
+                  <Link to={`productdetail/${product.productId}`}>{product.productName}</Link>
+                </Card.Title>
                 <Card.Text>
                   {product.productCategory}
                   <br />
@@ -153,18 +182,21 @@ const filteredProducts = products.filter(product =>
                   <Form.Group>
                     <Form.Label>Quantity</Form.Label>
                     <Form.Control
-                        type="number"
-                        min="1"
-                        value={quantity[product.productId] || 1}  // Default quantity is 1
-                        onChange={(e) => handleQuantityChange(product.productId, e.target.value)}
-                        />
+                      type="number"
+                      min="1"
+                      value={quantity[product.productId] || 1} // Default quantity is 1
+                      onChange={(e) =>
+                        handleQuantityChange(product.productId, e.target.value)
+                      }
+                    />
                   </Form.Group>
-                <br />
-
+                  <br />
                 </Card.Text>
                 <Button
                   variant="primary"
-                  onClick={() => addToCart(product.productId, product.productPrice)}
+                  onClick={() =>
+                    addToCart(product.productId, product.productPrice)
+                  }
                 >
                   Add to Cart
                 </Button>
