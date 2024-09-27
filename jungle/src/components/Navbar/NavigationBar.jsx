@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { SearchContext } from "../../App";
 import {
   Navbar,
@@ -16,11 +16,33 @@ export default function NavigationBar() {
   var accountName = "Placeholder Username";
   var [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const LogoUrl =
-    "https://i.postimg.cc/pdhx5bzJ/865aa6c1-3d95-4e76-a5a8-d3eb25d3d95e.jpg";
+  const LogoUrl = "https://i.postimg.cc/pdhx5bzJ/865aa6c1-3d95-4e76-a5a8-d3eb25d3d95e.jpg";
+
   function testLogin() {
     setIsLoggedIn(!isLoggedIn);
   }
+
+  const [customerId, setCustomerId] = useState(null);
+  const [customerName, setCustomerName] = useState();
+
+  // Fetch CustomerID/CustomerName from sessionStorage
+  useEffect(() => {
+      const storedCustomerId = sessionStorage.getItem('customerId');
+      const storedCustomerName = sessionStorage.getItem('customerName');
+      if (storedCustomerId) {
+        setCustomerId(storedCustomerId);  // Set customerId from sessionStorage
+      }
+
+      if (storedCustomerName) {
+        setCustomerName(storedCustomerName);
+      }
+  }, []);
+
+  const handleLogout = () => {
+      sessionStorage.removeItem('customerId'); // Clear session
+      sessionStorage.removeItem('customerName');
+      window.location.href = '/login'; // Redirect to login page
+  };
 
   function handleSearch() {
     setTriggerSearch(triggerSearch+1);
@@ -51,14 +73,13 @@ export default function NavigationBar() {
           </Row>
         </Form>
 
-        <NavDropdown title={isLoggedIn ? accountName : "Not Logged In"}>
-          {isLoggedIn ? (
+        <NavDropdown title={customerId ? `Welcome: ${customerName}` : "Not Logged In"}>
+          {customerId ? (
             <div>
               <NavDropdown.Item href="/cart">My Cart</NavDropdown.Item>
-              <NavDropdown.Item href="/account">
-                Account Settings
-              </NavDropdown.Item>
-              <NavDropdown.Item onClick={testLogin}>Logout</NavDropdown.Item>
+              <NavDropdown.Item href="/account">Account Settings</NavDropdown.Item>
+              <NavDropdown.Item>
+                <Button variant="danger" onClick={handleLogout}>Logout</Button></NavDropdown.Item>
             </div>
           ) : (
             <div>
