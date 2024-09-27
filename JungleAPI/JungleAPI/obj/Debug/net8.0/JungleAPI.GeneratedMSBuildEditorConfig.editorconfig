@@ -17,11 +17,19 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = JungleAPI
 build_property.RootNamespace = JungleAPI
+<<<<<<< HEAD
 build_property.ProjectDir = C:\Users\jason\OneDrive\Desktop\Cohort - 05082024\Project2\Jungle\JungleAPI\JungleAPI\
+=======
+build_property.ProjectDir = C:\Users\User\Desktop\Jungle\JungleAPI\JungleAPI\
+>>>>>>> 3af19b945bf56b0e3ad593e5c0cd41b9afb9602c
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+<<<<<<< HEAD
 build_property.MSBuildProjectDirectory = C:\Users\jason\OneDrive\Desktop\Cohort - 05082024\Project2\Jungle\JungleAPI\JungleAPI
+=======
+build_property.MSBuildProjectDirectory = C:\Users\User\Desktop\Jungle\JungleAPI\JungleAPI
+>>>>>>> 3af19b945bf56b0e3ad593e5c0cd41b9afb9602c
 build_property._RazorSourceGeneratorDebug = 

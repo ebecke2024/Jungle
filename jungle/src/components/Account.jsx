@@ -42,7 +42,7 @@ const CustomersList = () => {
               <td>{customer.custName}</td>
               <td>{customer.custEmail}</td>
               <td>{customer.userName}</td>
-              <td>{customer.custPassword}</td>
+              <td>{customer.custPassWord}</td>
             </tr>
           ))}
         </tbody>
