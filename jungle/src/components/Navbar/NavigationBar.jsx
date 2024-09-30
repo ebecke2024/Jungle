@@ -22,8 +22,8 @@ export default function NavigationBar() {
     setIsLoggedIn(!isLoggedIn);
   }
 
-  const [customerId, setCustomerId] = useState('');
-  const [customerName, setCustomerName] = useState('');
+  const [customerId, setCustomerId] = useState(null);
+  const [customerName, setCustomerName] = useState();
 
   // Fetch CustomerID/CustomerName from sessionStorage
   useEffect(() => {
@@ -46,7 +46,6 @@ export default function NavigationBar() {
 
   function handleSearch() {
     setTriggerSearch(triggerSearch+1);
-    console.log(triggerSearch + " clicked search");
   }
 
   return (
