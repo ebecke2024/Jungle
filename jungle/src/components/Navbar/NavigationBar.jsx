@@ -64,6 +64,9 @@ export default function NavigationBar() {
                 placeholder="Search Jungle"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') e.preventDefault();
+                }}
               />
             </Col>
             <Col>

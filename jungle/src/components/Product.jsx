@@ -49,6 +49,8 @@ const ProductList = (navigation) => {
       const response = await fetch(PRODUCTS_API_URL);
       const data = await response.json();
       setProducts(data);
+      setSearchedProducts(data);
+      setFilteredProducts(data);
       setCombinedProducts(data);
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -65,11 +67,18 @@ const ProductList = (navigation) => {
   };
 
   const filterBySearch = () => {
-    const searched = products.filter((p) =>
-      p.productName.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-    setSearchedProducts(searched);
-    combineProducts(filteredProducts, searched);
+    if (searchQuery === "") {
+      setSearchedProducts(products);
+      combineProducts(filteredProducts, products);
+    }
+    else {
+      const searched = products.filter((p) =>
+        p.productName.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setSearchedProducts(searched);
+      combineProducts(filteredProducts, searched);
+    }
+
   };
 
   function combineProducts(filteredProducts, searchedProducts) {
