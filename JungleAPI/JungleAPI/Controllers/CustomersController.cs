@@ -53,7 +53,7 @@ namespace JungleAPI.Controllers
             if (customer != null)
             {
                 // Authentication successful, return a session token or just a success message
-                return Ok(new { message = "Login successful", customerId = customer.CustomerId });
+                return Ok(new { message = "Login successful", customerId = customer.CustomerId, custName = customer.CustName });
             }
 
             // Authentication failed

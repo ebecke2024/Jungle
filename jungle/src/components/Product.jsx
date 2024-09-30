@@ -27,6 +27,7 @@ const ProductList = (navigation) => {
   useEffect(() => {
     fetchProducts();
     fetchCategories();
+    filterBySearch();
 
     const storedCustomerId = sessionStorage.getItem("customerId");
     if (storedCustomerId) {
@@ -54,6 +55,7 @@ const ProductList = (navigation) => {
     }
   };
 
+
   const filterByCategory = () => {
     const filtered = products.filter(
       (p) => selectedCategory === "All" || p.productCategory === selectedCategory
@@ -78,7 +80,7 @@ const ProductList = (navigation) => {
     
     setCombinedProducts(combined);
   }
-  
+
   const fetchCategories = async () => {
     try {
       const response = await fetch(CATEGORIES_API_URL);
@@ -99,6 +101,7 @@ const ProductList = (navigation) => {
 
   const addToCart = async (productId, productPrice) => {
     try {
+
       const selectedQuantity = quantity[products.productId] || 1;
       const cartItem = {
         cartProductId: productId,
@@ -155,7 +158,8 @@ const ProductList = (navigation) => {
     <Container style={{ backgroundColor: "white", padding: "20px" }}>
       <Row className="my-4">
         <Col>
-          <h2>Our Products - {customerId}</h2>
+
+          <h2>Our Products</h2>
         </Col>
         <Col>
           {/* Category Dropdown Filter */}
