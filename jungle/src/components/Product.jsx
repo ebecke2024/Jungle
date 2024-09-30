@@ -10,11 +10,15 @@ const ADD_TO_CART_API_URL = "https://localhost:7080/api/Cart"; // Endpoint to ad
 const CATEGORIES_API_URL = "https://localhost:7080/api/Products/categories"; // Endpoint to fetch categories from products
 
 const ProductList = (navigation) => {
+
   const [products, setProducts] = useState([]);
+  const [searchedProducts, setSearchedProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [combinedProducts, setCombinedProducts] = useState([]);
+
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const { searchQuery, triggerSearch } = useContext(SearchContext);
-  const [searchedProducts, setSearchedProducts] = useState([]);
   const [cart, setCart] = useState([]);
   const [quantity, setQuantity] = useState({});
   const [customerId, setCustomerId] = useState(null);
@@ -23,7 +27,6 @@ const ProductList = (navigation) => {
   useEffect(() => {
     fetchProducts();
     fetchCategories();
-    filterBySearch();
 
     const storedCustomerId = sessionStorage.getItem("customerId");
     if (storedCustomerId) {
@@ -31,24 +34,51 @@ const ProductList = (navigation) => {
     }
   }, []);
 
+  // update page when applying filter
+  useEffect(() => {
+    filterByCategory();
+  }, [selectedCategory]);
+
+  useEffect(() => {
+    filterBySearch();
+  }, [triggerSearch]);
+
   const fetchProducts = async () => {
     try {
       const response = await fetch(PRODUCTS_API_URL);
       const data = await response.json();
       setProducts(data);
+      setCombinedProducts(data);
     } catch (error) {
       console.error("Error fetching products:", error);
     }
   };
 
-  function filterBySearch() {
-    setSearchedProducts(
-      products.filter(
-        (p) => p.productName.toLowerCase().includes(searchQuery.toLowerCase()), // Both are converted to lowercase
-      ),
+  const filterByCategory = () => {
+    const filtered = products.filter(
+      (p) => selectedCategory === "All" || p.productCategory === selectedCategory
     );
-  }
+    setFilteredProducts(filtered);
+    combineProducts(filtered, searchedProducts);
+  };
 
+  const filterBySearch = () => {
+    const searched = products.filter((p) =>
+      p.productName.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setSearchedProducts(searched);
+    combineProducts(filteredProducts, searched);
+  };
+
+  function combineProducts(filteredProducts, searchedProducts) {
+    const searchedProductIds = new Set(searchedProducts.map((p) => p.productId));
+    const combined = filteredProducts.filter((filteredProduct) =>
+      searchedProductIds.has(filteredProduct.productId)
+    );
+    
+    setCombinedProducts(combined);
+  }
+  
   const fetchCategories = async () => {
     try {
       const response = await fetch(CATEGORIES_API_URL);
@@ -104,17 +134,6 @@ const ProductList = (navigation) => {
     setSelectedCategory(e.target.value);
   };
 
-  // Filter products based on the selected category
-  const filteredProducts = products
-    .filter(
-      (product) =>
-        selectedCategory === "All" ||
-        product.productCategory === selectedCategory,
-    )
-    .filter((product) =>
-      product.productName.toLowerCase().includes(searchQuery.toLowerCase()),
-    );
-
   if (!customerId) {
     return (
       <Container style={{ align: "center" }}>
@@ -122,7 +141,7 @@ const ProductList = (navigation) => {
         <Card style={{ width: "18rem" }}>
           <Card.Body>
             <Card.Title>Login Is Required</Card.Title>
-            <Card.Text>Pleas login to access our products!</Card.Text>
+            <Card.Text>Please login to access our products!</Card.Text>
             <Button variant="primary" href="/login">
               Login
             </Button>
@@ -158,7 +177,7 @@ const ProductList = (navigation) => {
       </Row>
 
       <Row>
-        {filteredProducts.map((product) => (
+        {combinedProducts.map((product) => (
           <Col key={product.productId} sm={6} md={4} lg={2} className="mb-4">
             <Card>
               <Card.Img

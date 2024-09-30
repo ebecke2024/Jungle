@@ -46,7 +46,6 @@ export default function NavigationBar() {
 
   function handleSearch() {
     setTriggerSearch(triggerSearch+1);
-    console.log(triggerSearch + " clicked search");
   }
 
   return (
